@@ -1,8 +1,10 @@
 package org.example;
 
+import org.junit.After;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 public class GameTest {
     private Game game;
@@ -10,15 +12,12 @@ public class GameTest {
     @BeforeEach
     public void setup(){
         game = new Game(10);
-        game.setPlayerLife(1);
     }
 
     @Test
-    public void TestWinGame(){
-        game.StartGame();
-        game.setPlayerX(game.getTreasureX());
-        game.setPlayerY(game.getTreasureY());
-        //assertEquals("Brilliant! Win the treasure!",game.ifwin());
+    public void TestGetMonsterNumber(){
+        game.setMonsterN(5);
+        assertEquals(5,game.getMonsterN());
     }
 
     @Test
@@ -33,6 +32,11 @@ public class GameTest {
         game.setTreasureY(8);
         assertEquals(4,game.getTreasureX());
         assertEquals(8,game.getTreasureY());
+    }
+
+    @After
+    public void finalise(){
+        System.out.println("After test");
     }
 
 }

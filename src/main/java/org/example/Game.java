@@ -12,7 +12,7 @@ public class Game {
     private int playerLife;
     public int monsterX;
     public int monsterY;
-    public int monsterN;
+    public int monsterN = 0;
     public ArrayList<Monster> MonsterList = new ArrayList<>();
     public int monsterType = 2;
     private boolean[][] map;
@@ -68,6 +68,14 @@ public class Game {
         this.playerLife = playerLife;
     }
 
+    public int getMonsterN() {
+        return monsterN;
+    }
+
+    public void setMonsterN(int monsterN) {
+        this.monsterN = monsterN;
+    }
+
     public void StartGame(){
         generatePlayer();
         generateTreasure();
@@ -114,8 +122,10 @@ public class Game {
 
     public void generateMonster(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Input Monster number you want to generate");
-        this.monsterN = scanner.nextInt();
+        if (monsterN == 0){
+            System.out.println("Input Monster number you want to generate");
+            this.monsterN = scanner.nextInt();
+        }
         Random rand = new Random();
         for(int i = 1; i<=monsterN; i++){
             monsterX = rand.nextInt(size);
