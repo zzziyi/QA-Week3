@@ -182,6 +182,8 @@ public class Game {
         if (this.playerLife <=0){
             System.out.println("Lose......");
             System.exit(1);
+        }else {
+            System.out.println("You have " + playerLife + " life left. Be careful!");
         }
     }
 
@@ -203,9 +205,13 @@ public class Game {
                 if (monster.getGood()){
                     playerLife += 1;
                     System.out.println("RedBuff: Give you one more life!");
+                    map[monsterX][monsterY] = true;
+                    MonsterList.remove(monster);
                 }else{
                     playerLife -=2;
                     System.out.println("Dragon: Destroy everything!");
+                    map[monsterX][monsterY] = true;
+                    MonsterList.remove(monster);
                     CheckLife();
                 }
             }
