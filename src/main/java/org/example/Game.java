@@ -76,6 +76,7 @@ public class Game {
         this.monsterN = monsterN;
     }
 
+
     public void StartGame(){
         generatePlayer();
         generateTreasure();
@@ -114,7 +115,6 @@ public class Game {
         do {
             treasureX = rand.nextInt(size);
             treasureY = rand.nextInt(size);
-//        }while (playerX == treasureX && playerY== treasureY);
           }while (!map[treasureX][treasureY]);
         map[treasureX][treasureY] = false;
         System.out.println("Treasure position is at ["+ treasureX + ", " + treasureY + "]");
@@ -185,6 +185,7 @@ public class Game {
                 }
                 break;
         }
+        //System.out.println("Your are at ["+ playerX + "," + playerY + "]");
         System.out.println("Your are at ["+ playerX + "," + playerY + "]");
     }
 
@@ -214,32 +215,37 @@ public class Game {
             if (playerX == monster.getMonsterX() && playerY == monster.getMonsterY()){
                 if (monster.getGood()){
                     playerLife += 1;
-                    System.out.println("RedBuff: Give you one more life!");
-                    map[monsterX][monsterY] = true;
-                    MonsterList.remove(monster);
+                    RedbuffGreet();
                 }else{
                     playerLife -=2;
-                    System.out.println("Dragon: Destroy everything!");
-                    map[monsterX][monsterY] = true;
-                    MonsterList.remove(monster);
+                    DragonGreet();
                     CheckLife();
                 }
+                map[monsterX][monsterY] = true;
+                MonsterList.remove(monster);
             }
         }
     }
 
-    public void pointDirection(){
+    public String RedbuffGreet(){
+        return ("RedBuff: Give you one more life!");
+    }
+    public String DragonGreet(){
+        return ("Dragon: Destroy everything!");
+    }
+
+    public String pointDirection(){
         if(playerX <= treasureX){
             if (playerY <= treasureY){
-                System.out.println(" Treasure is at your right and top");
+                return ("Treasure is at your right and top");
             }else{
-                System.out.println(" Treasure is at your right and down");
+                return("Treasure is at your right and down");
             }
         }else {
             if (playerY <= treasureY){
-                System.out.println(" Treasure is at your left and top");
+                return("Treasure is at your left and top");
             }else{
-                System.out.println(" Treasure is at your left and down");
+                return("Treasure is at your left and down");
             }
         }
     }
